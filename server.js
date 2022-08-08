@@ -57,7 +57,7 @@ app.use(passport.session());
 
 function checkLoggedIn(req, res, next) {
   console.log("User Logged", req.user);
-  const isLoggedIn = req.user;
+  const isLoggedIn = req.isAuthenticated() && req.user;
   if (!isLoggedIn) {
     return res.status(401).json({
       error: "You must log in!",
@@ -81,7 +81,7 @@ app.get(
     session: true,
   }),
   (req, res) => {
-    "Google called us back";
+    console.log("Google called us back");
   }
 );
 
